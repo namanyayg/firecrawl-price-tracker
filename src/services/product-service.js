@@ -71,7 +71,7 @@ export class ProductService {
       include: {
         prices: {
           orderBy: { createdAt: 'desc' },
-          take: 1,
+          take: 3,
         },
       },
     });

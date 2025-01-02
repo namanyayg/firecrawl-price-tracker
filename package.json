@@ -8,7 +8,7 @@
     "start": "node src/index.js",
     "db:push": "prisma db push",
     "db:studio": "prisma studio",
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --verbose",
     "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch"
   },
   "keywords": [

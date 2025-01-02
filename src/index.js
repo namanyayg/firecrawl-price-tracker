@@ -52,7 +52,9 @@ async function checkAndNotifyPrices() {
 }
 
 // Run the price check every 12 hours
-cron.schedule('0 */12 * * *', checkAndNotifyPrices);
+if (process.env.SHOULD_SCHEDULE === 'true') {
+  cron.schedule('0 */12 * * *', checkAndNotifyPrices);
+}
 
 // Also run it once on startup
 console.log('Starting price tracker...');
