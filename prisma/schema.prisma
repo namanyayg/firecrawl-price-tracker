@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model TrackedUrl {
+  id        Int      @id @default(autoincrement())
+  url       String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  prices    Price[]
+}
+
+model Price {
+  id           Int        @id @default(autoincrement())
+  trackedUrl   TrackedUrl @relation(fields: [trackedUrlId], references: [id])
+  trackedUrlId Int
+  title        String
+  price        Float
+  currency     String     @default("USD")
+  isAvailable  Boolean    @default(true)
+  metadata     String? // Store any additional metadata as JSON string
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  @@index([trackedUrlId])
+}
